@@ -21,6 +21,8 @@ into your bash command prompt; you'll have to activate the virtual environment w
 
 .\venv\Scripts\activate
 
+However this varies based upon your directory, so I take no responsibility for improperly established virtual environments!
+
 2. To set up the database and schema;
    SQLite is localized to use everything in schema.sql
    In your command window (Virtual environment with all dependent pre-requisites installed)
@@ -30,7 +32,14 @@ into your bash command prompt; you'll have to activate the virtual environment w
 
    If successful, you should receive a message confirming that it was initialized. (If this doesn't work, try placing a dash between for init-db)
 
-3. Use the command
+3. When testing, I've had to run command
+
+   set FLASK_APP=flaskr.flaskr
+
+   (Change "set" to "export" if not on Windows.)
+   (NO SPACES in the command!)
+   
+5. Use the command
 
    flask run
 
@@ -38,11 +47,6 @@ into your bash command prompt; you'll have to activate the virtual environment w
    This IP should be http://127.0.0.1:5000/
    
    
-4. Enter the localhost IP (shown above) into your web browser's URL. You should now be viewing the web application!
+6. Enter the localhost IP (shown above) into your web browser's URL. You should now be viewing the web application!
 
-5. (TROUBLESHOOTING): When testing, I've had to run command
 
-   set FLASK_APP=flaskr.flaskr
-
-   (Change "set" to "export" if not on Windows.)
-   If you have trouble running the program, try this and then run it again.
