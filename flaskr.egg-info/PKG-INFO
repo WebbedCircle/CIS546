@@ -1,0 +1,5 @@
+Metadata-Version: 2.2
+Name: flaskr
+Version: 0.0.0
+Requires-Dist: flask
+Dynamic: requires-dist

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>Register</h2>
+
+<p><a href="{{ url_for('register') }}">Register</a> | <a href="{{ url_for('login') }}">Login</a></p>
+
+<form method="post">
+    <label for="username">Username:</label>
+    <input type="text" name="username" required>
+    <label for="password">Password:</label>
+    <input type="password" name="password" required>
+    <button type="submit">Register</button>
+</form>
+
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+{% endblock %}

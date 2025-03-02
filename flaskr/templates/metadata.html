@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Metadata for "{{ entry.title }}"</h2>
+  
+  {% if entry.image_path %}
+    <img src="{{ entry.image_path }}" alt="Uploaded Image" width="300">
+  {% endif %}
+  
+  <h3>Extracted Metadata</h3>
+  <table class="metadata-table">
+    {% for key, value in metadata.items() %}
+      <tr>
+        <td><strong>{{ key }}</strong></td>
+        <td>{{ value }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  
+  <a href="{{ url_for('show_entries') }}">Back to Entries</a>
+
+  <style>
+    .metadata-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .metadata-table td {
+      padding: 5px;
+      border: 1px solid #ddd;
+    }
+  </style>
+{% endblock %}

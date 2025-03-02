@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('add_entry') }}" method="post" enctype="multipart/form-data" class="add-entry">
+      <dl>
+        <dt>Title:</dt>
+        <dd><input type="text" size="30" name="title" required></dd>
+        <dt>Text:</dt>
+        <dd><textarea name="text" rows="5" cols="40" required></textarea></dd>
+        <dt>Image (Optional):</dt>
+        <dd><input type="file" name="image" accept="image/*"></dd>
+        <dd><input type="submit" value="Share"></dd>
+      </dl>
+    </form>
+  {% endif %}
+
+  <!-- User-specific history search form -->
+  <form action="{{ url_for('show_entries') }}" method="get" class="user-filter">
+    <label for="username">Filter by user:</label>
+    <input type="text" name="username" id="username" placeholder="Enter username" value="{{ request.args.get('username', '') }}">
+    <input type="submit" value="Filter">
+  </form>
+
+
+
+  <ul class="entries">
+  {% for entry in entries %}
+    <li>
+      <h2>{{ entry.title }}</h2>
+      <p>{{ entry.text|safe }}</p>
+      
+      {% if entry.image_path %}
+        <img src="{{ entry.image_path }}" alt="Uploaded Image" width="300">
+      {% endif %}
+      
+      <p><small>Posted on: {{ entry.timestamp }}</small></p>
+      
+      {% if entry.metadata %}
+        <a href="{{ url_for('view_metadata', entry_id=entry.id) }}">
+          <button>View Metadata</button>
+        </a>
+      {% endif %}
+    </li>
+  {% else %}
+    <li><em>Unbelievable. No entries here so far.</em></li>
+  {% endfor %}
+  </ul>
+{% endblock %}
